@@ -74,6 +74,7 @@ func (m *metrics) update(host string, ok bool, rtt time.Duration) {
 		m.rtt.WithLabelValues(host).Set(rtt.Seconds() * 1000)
 	} else {
 		m.ng.WithLabelValues(host).Inc()
+		m.rtt.WithLabelValues(host).Set(0)
 	}
 }
 
